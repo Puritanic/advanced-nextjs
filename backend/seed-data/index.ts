@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { products } from './data';
 
 export async function insertSeedData(ks: any) {
@@ -9,9 +10,7 @@ export async function insertSeedData(ks: any) {
   const { mongoose } = adapter;
   for (const product of products) {
     console.log(`  🛍️ Adding Product: ${product.name}`);
-    const { _id } = await mongoose
-    .model('ProductImage')
-    .create({ image: product.photo, altText: product.description });
+    const { _id } = await mongoose.model('ProductImage').create({ image: product.photo, altText: product.description });
     product.photo = _id;
     await mongoose.model('Product').create(product);
   }

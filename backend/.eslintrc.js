@@ -1,19 +1,22 @@
 module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
   extends: [
-    'plugin:@typescript-eslint/recommended', // Uses rules from `@typescript-eslint/eslint-plugin`,
-    'airbnb-typescript',
+    'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    // Layer in all the JS Rules
-    'eslint:recommended',
     'prettier',
   ],
-  plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',
+    project: 'tsconfig.eslint.json',
   },
+  plugins: ['@typescript-eslint'],
   rules: {
     '@typescript-eslint/no-unsafe-assignment': 0,
     // This allows us to use async function on addEventListener(). Discussion: https://twitter.com/wesbos/status/1337074242161172486
@@ -31,8 +34,5 @@ module.exports = {
         ignoreDeclarationMerge: true,
       },
     ],
-  },
-  parserOptions: {
-    project: './tsconfig.json',
   },
 };
