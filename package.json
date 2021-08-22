@@ -1,0 +1,12 @@
+{
+	"name": "sick-fits",
+	"version": "0.1.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Darko Tasevski <darktasevski@gmail.com>",
+	"license": "MIT"
+}
