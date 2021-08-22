@@ -5,6 +5,9 @@ import { config, createSchema } from '@keystone-next/keystone/schema';
 import { createAuth } from '@keystone-next/auth';
 
 import User from './schemas/User';
+import Product from './schemas/Product';
+import ProductImage from './schemas/ProductImage';
+import { insertSeedData } from './seed-data';
 
 const databaseURL = process.env.DATABASE_URL || 'mongo://localhost:27017/keystone-sick-fits';
 
@@ -34,11 +37,18 @@ export default withAuth(
     db: {
       adapter: 'mongoose',
       url: databaseURL,
-      // TODO: seed data
+      async onConnect(keystone) {
+        console.log('Connected to mongoDB');
+        if (process.argv.includes('--seed-data')) {
+          await insertSeedData(keystone);
+        }
+      },
     },
     lists: createSchema({
       // Schema items go in here
       User,
+      Product,
+      ProductImage,
     }),
     ui: {
       // TODO: roles
