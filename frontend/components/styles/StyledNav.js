@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const NavStyles = styled.ul`
+const StyledNav = styled.ul`
   margin: 0;
   padding: 0;
   display: flex;
@@ -65,4 +65,4 @@ const NavStyles = styled.ul`
   }
 `;
 
-export default NavStyles;
+export default StyledNav;

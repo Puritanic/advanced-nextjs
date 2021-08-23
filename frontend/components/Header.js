@@ -25,7 +25,7 @@ const StyledHeader = styled.header`
     grid-template-columns: auto 1fr;
     border-bottom: 1px solid var(--black, black);
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
   }
 
   .sub-bar {
@@ -42,11 +42,11 @@ export default function Header() {
         <Logo>
           <Link href="/">Sick Fits</Link>
         </Logo>
+        <Nav />
       </div>
       <div className="sub-bar">
         <p>Search</p>
       </div>
-      <Nav />
     </StyledHeader>
   );
 }
