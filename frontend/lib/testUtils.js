@@ -1,4 +1,5 @@
 import casual from 'casual';
+
 import { PAGINATION_QUERY } from '../components/Pagination';
 
 // seed it so we get consistent results
@@ -105,12 +106,4 @@ function makePaginationMocksFor(length) {
   ];
 }
 
-export {
-  makePaginationMocksFor,
-  LocalStorageMock,
-  fakeItem,
-  fakeUser,
-  fakeCartItem,
-  fakeOrder,
-  fakeOrderItem,
-};
+export { makePaginationMocksFor, LocalStorageMock, fakeItem, fakeUser, fakeCartItem, fakeOrder, fakeOrderItem };
