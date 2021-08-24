@@ -12,7 +12,7 @@ const loading = keyframes`
   }
 `;
 
-const Form = styled.form`
+const StyledForm = styled.form`
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
   background: rgba(0, 0, 0, 0.02);
   border: 5px solid white;
@@ -57,12 +57,7 @@ const Form = styled.form`
       height: 10px;
       content: '';
       display: block;
-      background-image: linear-gradient(
-        to right,
-        #ff3019 0%,
-        #e2b04a 50%,
-        #ff3019 100%
-      );
+      background-image: linear-gradient(to right, #ff3019 0%, #e2b04a 50%, #ff3019 100%);
     }
     &[aria-busy='true']::before {
       background-size: 50% auto;
@@ -71,4 +66,4 @@ const Form = styled.form`
   }
 `;
 
-export default Form;
+export default StyledForm;

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import styled from 'styled-components';
 import React from 'react';
 
@@ -21,11 +22,11 @@ const ErrorStyles = styled.div`
 const DisplayError = ({ error }) => {
   if (!error || !error.message) return null;
   if (error.networkError && error.networkError.result && error.networkError.result.errors.length) {
-    return error.networkError.result.errors.map((error, i) => (
+    return error.networkError.result.errors.map((_error, i) => (
       <ErrorStyles key={i}>
         <p data-test="graphql-error">
           <strong>Shoot!</strong>
-          {error.message.replace('GraphQL error: ', '')}
+          {_error.message.replace('GraphQL error: ', '')}
         </p>
       </ErrorStyles>
     ));
@@ -45,7 +46,7 @@ DisplayError.defaultProps = {
 };
 
 DisplayError.propTypes = {
-  error: PropTypes.object,
+  error: PropTypes.shape({}),
 };
 
 export default DisplayError;

@@ -9,13 +9,10 @@ import StyledTitle from './styles/StyledTitle';
 export default function Product({ product }) {
   return (
     <StyledItem>
-      <Image
-        src={product?.photo?.image?.publicUrlTransformed}
-        alt={product.name}
-        height={400}
-        width={400}
-        unoptimized
-      />
+      {product?.photo?.image?.publicUrlTransformed ? (
+        <Image src={product.photo.image.publicUrlTransformed} alt={product.name} height={400} width={400} unoptimized />
+      ) : null}
+
       <StyledTitle>
         <Link href={`/product/${product.id}`}>{product.name}</Link>{' '}
       </StyledTitle>
