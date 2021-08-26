@@ -1,11 +1,13 @@
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
+import Router from 'next/router';
 import useForm from '../lib/useForm';
 import DisplayError from './DisplayError';
+import { ALL_PRODUCTS_QUERY } from './Products';
 import StyledForm from './styles/StyledForm';
 
 const CREATE_PRODUCT_MUTATION = gql`
-  mutation CREATE_PRODUCT($name: String!, $description: String!, $price: Int!, $image: Upload) {
+  mutation CREATE_PRODUCT_MUTATION($name: String!, $description: String!, $price: Int!, $image: Upload) {
     createProduct(
       data: {
         name: $name
@@ -25,16 +27,22 @@ const CREATE_PRODUCT_MUTATION = gql`
 
 export default function CreateProducts() {
   const { values, handleInputChange, clearForm } = useForm({ name: '', price: '', image: '', description: '' });
-  const [createProduct, { data, error, loading }] = useMutation(CREATE_PRODUCT_MUTATION, {
+  const [createProduct, { error, loading }] = useMutation(CREATE_PRODUCT_MUTATION, {
     variables: { name: values.name, description: values.description, price: values.price, image: values.image },
+    // once the mutation was successfully finished, we're refetching the products query so that it's up to date
+    refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
   });
 
   return (
     <StyledForm
       onSubmit={async (e) => {
         e.preventDefault();
-        await createProduct();
+        const res = await createProduct();
         clearForm();
+        // Go to products page
+        Router.push({
+          pathname: `/product/${res.data.createProduct.id}`,
+        });
       }}
     >
       <DisplayError error={error} />
