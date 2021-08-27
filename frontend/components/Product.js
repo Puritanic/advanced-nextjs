@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import formatMoney from '../lib/formatMoney';
+import DeleteProduct from './DeleteProduct';
 
 import StyledItem from './styles/StyledItem';
 import StyledPriceTag from './styles/StyledPriceTag';
@@ -18,6 +19,18 @@ export default function Product({ product }) {
       </StyledTitle>
       <StyledPriceTag>{formatMoney(product.price / 100)}</StyledPriceTag>
       <p>{product.description}</p>
+
+      <div className="buttonList">
+        <Link
+          href={{
+            pathname: '/update',
+            query: { id: product.id },
+          }}
+        >
+          Edit
+        </Link>
+        <DeleteProduct id={product.id}>Delete</DeleteProduct>
+      </div>
     </StyledItem>
   );
 }

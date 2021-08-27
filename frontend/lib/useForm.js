@@ -22,5 +22,5 @@ export default function useForm(initialState) {
     setValues(blankValues);
   }
 
-  return { values, handleInputChange, resetForm, clearForm };
+  return { values, setValues, handleInputChange, resetForm, clearForm };
 }
