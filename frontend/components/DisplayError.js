@@ -19,7 +19,7 @@ const ErrorStyles = styled.div`
   }
 `;
 
-const DisplayError = ({ error }) => {
+export default function DisplayError({ error }) {
   if (!error || !error.message) return null;
   if (error.networkError && error.networkError.result && error.networkError.result.errors.length) {
     return error.networkError.result.errors.map((_error, i) => (
@@ -31,6 +31,7 @@ const DisplayError = ({ error }) => {
       </ErrorStyles>
     ));
   }
+
   return (
     <ErrorStyles>
       <p data-test="graphql-error">
@@ -39,7 +40,7 @@ const DisplayError = ({ error }) => {
       </p>
     </ErrorStyles>
   );
-};
+}
 
 DisplayError.defaultProps = {
   error: {},
@@ -48,5 +49,3 @@ DisplayError.defaultProps = {
 DisplayError.propTypes = {
   error: PropTypes.shape({}),
 };
-
-export default DisplayError;

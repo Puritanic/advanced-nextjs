@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import casual from 'casual';
 
 import { PAGINATION_QUERY } from '../components/Pagination';

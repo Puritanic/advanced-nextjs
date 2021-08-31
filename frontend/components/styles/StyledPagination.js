@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const PaginationStyles = styled.div`
+const StyledPagination = styled.div`
   text-align: center;
   display: inline-grid;
   grid-template-columns: repeat(4, auto);
@@ -10,6 +10,7 @@ const PaginationStyles = styled.div`
   margin: 2rem 0;
   border: 1px solid var(--lightGray);
   border-radius: 10px;
+
   & > * {
     margin: 0;
     padding: 15px 30px;
@@ -24,4 +25,4 @@ const PaginationStyles = styled.div`
   }
 `;
 
-export default PaginationStyles;
+export default StyledPagination;
