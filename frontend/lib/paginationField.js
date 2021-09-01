@@ -23,22 +23,14 @@ export default function paginationField() {
       // If there are items
       // AND there aren't enough items to satisfy how many were requested
       // AND we are on the last page, THEN JUST SEND IT
-      if (items.length && items.length !== first && page === pages) {
-        return items;
-      }
-      if (items.length !== first) {
-        // We don't have any items, we must go to the network to fetch them.
-        // returning false triggers the network query refetch.
-        return false;
-      }
+      if (items.length && items.length !== first && page === pages) return items;
+
+      // We don't have any items, we must go to the network to fetch them.
+      // returning false triggers the network query refetch.
+      if (items.length !== first) return false;
 
       // If there are items, just return them from the cache, and we don't need to go to the network
-      if (items.length) {
-        // console.log(
-        //   `There are ${items.length} items in the cache! Gonna send them to apollo`
-        // );
-        return items;
-      }
+      if (items.length) return items;
 
       return false; // fallback to network
     },
@@ -48,7 +40,7 @@ export default function paginationField() {
       // This runs when the Apollo client comes back from the network with our product
       // console.log(`Merging items from the network ${incoming.length}`);
       const merged = existing ? existing.slice(0) : [];
-	  
+
       for (let i = skip; i < skip + incoming.length; i + 1) {
         merged[i] = incoming[i - skip];
       }

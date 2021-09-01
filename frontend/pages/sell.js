@@ -1,9 +1,9 @@
-import CreateProducts from '../components/CreateProducts';
+import CreateProduct from '../components/CreateProduct';
 
 export default function SellPage() {
   return (
     <div>
-      <CreateProducts />
+      <CreateProduct />
     </div>
   );
 }

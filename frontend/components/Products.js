@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { perPage } from '../config';
+import DisplayError from './DisplayError';
 import Product from './Product';
 
 export const ALL_PRODUCTS_QUERY = gql`
@@ -33,14 +34,14 @@ export default function Products({ pageNumber }) {
   });
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+
+  if (error) return <DisplayError error={error} />;
+
   return (
-    <div>
-      <StyledProductsList>
-        {data.allProducts.map((product) => (
-          <Product key={product.id} product={product} />
-        ))}
-      </StyledProductsList>
-    </div>
+    <StyledProductsList>
+      {data.allProducts.map((product) => (
+        <Product key={product.id} product={product} />
+      ))}
+    </StyledProductsList>
   );
 }

@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import NProgress from 'nprogress';
 import Router from 'next/router';
+import { useEffect } from 'react';
 import { ApolloProvider } from '@apollo/client';
 
 import Page from '../components/Page';
@@ -8,11 +9,19 @@ import Page from '../components/Page';
 import '../components/styles/nprogress.css';
 import withData from '../lib/withData';
 
-Router.events.on('routeChangeStart', () => NProgress.start());
-Router.events.on('routeChangeComplete', () => NProgress.done());
-Router.events.on('routeChangeError', () => NProgress.done());
-
 function App({ Component, pageProps, apollo }) {
+  useEffect(() => {
+    Router.events.on('routeChangeStart', () => NProgress.start());
+    Router.events.on('routeChangeComplete', () => NProgress.done());
+    Router.events.on('routeChangeError', () => NProgress.done());
+
+    return () => {
+      Router.events.off('routeChangeStart', () => NProgress.start());
+      Router.events.off('routeChangeComplete', () => NProgress.done());
+      Router.events.off('routeChangeError', () => NProgress.done());
+    };
+  }, []);
+
   return (
     <ApolloProvider client={apollo}>
       <Page>
