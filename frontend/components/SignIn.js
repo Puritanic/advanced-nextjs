@@ -1,16 +1,20 @@
 /* eslint-disable no-underscore-dangle */
-import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
+import { useMutation } from '@apollo/client';
 import useForm from '../lib/useForm';
+import { GET_USER_QUERY } from './User';
 import DisplayError from './DisplayError';
 import StyledForm from './styles/StyledForm';
-import { GET_USER_QUERY } from './User';
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
     authenticateUserWithPassword(email: $email, password: $password) {
       ... on UserAuthenticationWithPasswordSuccess {
-        sessionToken
+        item {
+          id
+          email
+          name
+        }
       }
       ... on UserAuthenticationWithPasswordFailure {
         code
@@ -24,8 +28,14 @@ export default function SignIn() {
   const { values, handleInputChange, resetForm } = useForm({ email: '', password: '' });
   const [signInUser, { data, error, loading }] = useMutation(SIGNIN_MUTATION, {
     variables: { email: values.email, password: values.password },
-    refetchQueries: [{ query: GET_USER_QUERY }],
+    refetchQueries: [{ query: GET_USER_QUERY }], // refetch the currently logged in user
   });
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await signInUser();
+    resetForm();
+  }
 
   const _error =
     data?.authenticateUserWithPassword.__typename === 'UserAuthenticationWithPasswordFailure'
@@ -33,45 +43,34 @@ export default function SignIn() {
       : undefined;
 
   return (
-    <StyledForm
-      method="POST"
-      onSubmit={async (e) => {
-        e.preventDefault();
-        await signInUser();
-        resetForm();
-      }}
-    >
+    <StyledForm method="POST" onSubmit={handleSubmit}>
+      <h2>Sign Into Your Account</h2>
       <DisplayError error={error || _error} />
-
-      <fieldset disabled={loading} aria-busy={loading}>
+      <fieldset disabled={loading}>
         <label htmlFor="email">
           Email
           <input
+            type="email"
+            name="email"
+            placeholder="Your Email Address"
+            autoComplete="email"
             value={values.email}
             onChange={handleInputChange}
-            type="email"
-            id="email"
-            name="email"
-            autoComplete="email"
-            placeholder="Your Email Address"
-            required
           />
         </label>
 
         <label htmlFor="password">
           Password
           <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            autoComplete="password"
             value={values.password}
             onChange={handleInputChange}
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Your Password"
-            required
           />
         </label>
-
-        <button type="submit">Sign In</button>
+        <button type="submit">Sign In!</button>
       </fieldset>
     </StyledForm>
   );
