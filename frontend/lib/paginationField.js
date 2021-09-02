@@ -40,11 +40,9 @@ export default function paginationField() {
       // This runs when the Apollo client comes back from the network with our product
       // console.log(`Merging items from the network ${incoming.length}`);
       const merged = existing ? existing.slice(0) : [];
-
-      for (let i = skip; i < skip + incoming.length; i + 1) {
+      for (let i = skip; i < skip + incoming.length; i += 1) {
         merged[i] = incoming[i - skip];
       }
-      // console.log(merged);
       // Finally we return the merged items from the cache,
       return merged;
     },

@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
-import { Router } from 'next/router';
 import useForm from '../lib/useForm';
 import DisplayError from './DisplayError';
 import StyledForm from './styles/StyledForm';
@@ -22,7 +21,7 @@ const SIGNIN_MUTATION = gql`
 `;
 
 export default function SignIn() {
-  const { values, handleInputChange, clearForm } = useForm({ email: '', password: '' });
+  const { values, handleInputChange, resetForm } = useForm({ email: '', password: '' });
   const [signInUser, { data, error, loading }] = useMutation(SIGNIN_MUTATION, {
     variables: { email: values.email, password: values.password },
     refetchQueries: [{ query: GET_USER_QUERY }],
@@ -39,10 +38,7 @@ export default function SignIn() {
       onSubmit={async (e) => {
         e.preventDefault();
         await signInUser();
-        clearForm();
-        Router.push({
-          pathname: '/',
-        });
+        resetForm();
       }}
     >
       <DisplayError error={error || _error} />
