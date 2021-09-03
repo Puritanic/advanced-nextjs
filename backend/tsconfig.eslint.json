@@ -5,6 +5,7 @@
     // these are the eslint-only inclusions
     "*.ts",
     "*.js",
-    "lib/*"
+    "lib/*",
+    "schemas/**/*"
   ]
 }

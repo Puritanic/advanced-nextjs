@@ -10,6 +10,14 @@ const User = list({
     email: text({ isRequired: true, isUnique: true }),
     password: password({ isRequired: true }),
     // Add roles, cart, orders
+    cart: relationship({
+      ref: 'CartItem.user',
+      many: true,
+      ui: {
+        createView: { fieldMode: 'hidden' },
+        itemView: { fieldMode: 'read' },
+      },
+    }),
   },
 });
 
