@@ -8,6 +8,7 @@ import User from './schemas/User';
 import Product from './schemas/Product';
 import ProductImage from './schemas/ProductImage';
 import { insertSeedData } from './seed-data';
+import { sendPasswordResetEmail } from './lib/mail';
 
 const databaseURL = process.env.DATABASE_URL || 'mongo://localhost:27017/keystone-sick-fits';
 
@@ -22,8 +23,15 @@ const { withAuth } = createAuth({
   secretField: 'password',
   initFirstItem: {
     fields: ['name', 'email', 'password'],
+    // TODO: add initial roles
   },
-  // TODO: add initial roles
+  passwordResetLink: {
+    async sendToken(args) {
+      // send the email
+      console.log(args);
+      await sendPasswordResetEmail(args.token, args.identity);
+    },
+  },
 });
 
 export default withAuth(
@@ -54,6 +62,7 @@ export default withAuth(
       // TODO: roles
       // Show the UI only for people who pass this test
       isAccessAllowed: ({ session }) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return Boolean(session?.data);
       },
     },
