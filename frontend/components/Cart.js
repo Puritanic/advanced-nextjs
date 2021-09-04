@@ -34,9 +34,9 @@ function CartItem({ cartItem }) {
       <Image alt={name} src={photo.image.publicUrlTransformed} width={100} height={0} />
       <div>
         <h3>{name}</h3>
-        <p>{formatMoney(price * quantity)}</p> -{' '}
+        <p>{formatMoney((price / 100) * quantity)}</p> -{' '}
         <em>
-          {quantity} &times; {formatMoney(price)} each
+          {quantity} &times; {formatMoney(price / 100)} each
         </em>
       </div>
     </StyledCartItem>
@@ -68,7 +68,7 @@ export default function Cart() {
         })}
       </ul>
       <footer>
-        <p>Total: {formatMoney(total)}</p>
+        <p>Total: {formatMoney(total / 100)}</p>
       </footer>
     </StyledCart>
   );

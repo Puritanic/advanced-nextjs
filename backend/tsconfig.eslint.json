@@ -6,6 +6,7 @@
     "*.ts",
     "*.js",
     "lib/*",
-    "schemas/**/*"
+    "schemas/**/*",
+    "mutations/*"
   ]
 }
