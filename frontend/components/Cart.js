@@ -6,6 +6,7 @@ import { useUser } from './User';
 import formatMoney from '../lib/formatMoney';
 import { useCart } from '../lib/cartState';
 import StyledCloseButton from './styles/StyledCloseButton';
+import RemoveFromCart from './RemoveFromCart';
 
 const StyledCartItem = styled.li`
   padding: 1rem 0;
@@ -26,9 +27,11 @@ const StyledCartItem = styled.li`
 
 function CartItem({ cartItem }) {
   const {
+    id,
     quantity,
     product: { photo, name, price },
   } = cartItem;
+
   return (
     <StyledCartItem>
       <Image alt={name} src={photo.image.publicUrlTransformed} width={100} height={0} />
@@ -39,6 +42,7 @@ function CartItem({ cartItem }) {
           {quantity} &times; {formatMoney(price / 100)} each
         </em>
       </div>
+      <RemoveFromCart id={id} />
     </StyledCartItem>
   );
 }
