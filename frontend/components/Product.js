@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import formatMoney from '../lib/formatMoney';
+import AddToCart from './AddToCart';
 import DeleteProduct from './DeleteProduct';
 
 import StyledItem from './styles/StyledItem';
@@ -29,6 +30,7 @@ export default function Product({ product }) {
         >
           Edit
         </Link>
+        <AddToCart id={product.id} />
         <DeleteProduct id={product.id}>Delete</DeleteProduct>
       </div>
     </StyledItem>
