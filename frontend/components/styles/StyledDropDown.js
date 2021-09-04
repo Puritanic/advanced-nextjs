@@ -1,13 +1,13 @@
 import styled, { keyframes } from 'styled-components';
 
-const DropDown = styled.div`
+const StyledDropDown = styled.div`
   position: absolute;
   width: 100%;
   z-index: 2;
   border: 1px solid var(--lightGray);
 `;
 
-const DropDownItem = styled.div`
+const StyledDropDownItem = styled.div`
   border-bottom: 1px solid var(--lightGray);
   background: ${(props) => (props.highlighted ? '#f7f7f7' : 'white')};
   padding: 1rem;
@@ -15,10 +15,10 @@ const DropDownItem = styled.div`
   ${(props) => (props.highlighted ? 'padding-left: 2rem;' : null)};
   display: flex;
   align-items: center;
-  border-left: 10px solid
-    ${(props) => (props.highlighted ? props.theme.lightgrey : 'white')};
+  border-left: 10px solid ${(props) => (props.highlighted ? props.theme.lightgrey : 'white')};
   img {
-    margin-right: 10px;
+    margin-right: 1rem;
+    height: auto;
   }
 `;
 
@@ -32,7 +32,7 @@ const glow = keyframes`
   }
 `;
 
-const SearchStyles = styled.div`
+const StyledSearch = styled.div`
   position: relative;
   input {
     width: 100%;
@@ -45,4 +45,4 @@ const SearchStyles = styled.div`
   }
 `;
 
-export { DropDown, DropDownItem, SearchStyles };
+export { StyledDropDown, StyledDropDownItem, StyledSearch };
