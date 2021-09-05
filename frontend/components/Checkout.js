@@ -8,7 +8,7 @@ import { useLayoutEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useMutation } from '@apollo/client';
 import StyledSickButton from './styles/SickButton';
-import { useCart } from '../lib/cartState';
+import { useCart } from '../lib/useCart';
 import { GET_USER_QUERY } from './User';
 
 const stripeLib = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);

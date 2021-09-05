@@ -8,7 +8,7 @@ import Page from '../components/Page';
 
 import '../components/styles/nprogress.css';
 import withData from '../lib/withData';
-import { CartStateProvider } from '../lib/cartState';
+import { CartStateProvider } from '../lib/useCart';
 
 function App({ Component, pageProps, apollo }) {
   useEffect(() => {

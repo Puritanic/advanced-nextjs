@@ -4,7 +4,7 @@ import StyledCart from './styles/StyledCart';
 import StyledSupreme from './styles/StyledSupreme';
 import { useUser } from './User';
 import formatMoney from '../lib/formatMoney';
-import { useCart } from '../lib/cartState';
+import { useCart } from '../lib/useCart';
 import StyledCloseButton from './styles/StyledCloseButton';
 import RemoveFromCart from './RemoveFromCart';
 import Checkout from './Checkout';
