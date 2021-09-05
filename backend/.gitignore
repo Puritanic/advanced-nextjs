@@ -1,5 +1,5 @@
-.next
+.keystone
+.env
 node_modules
-.env.local
 .DS_Store
 !.vscode
