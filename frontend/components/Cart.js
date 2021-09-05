@@ -7,6 +7,7 @@ import formatMoney from '../lib/formatMoney';
 import { useCart } from '../lib/cartState';
 import StyledCloseButton from './styles/StyledCloseButton';
 import RemoveFromCart from './RemoveFromCart';
+import Checkout from './Checkout';
 
 const StyledCartItem = styled.li`
   padding: 1rem 0;
@@ -73,6 +74,7 @@ export default function Cart() {
       </ul>
       <footer>
         <p>Total: {formatMoney(total / 100)}</p>
+        <Checkout />
       </footer>
     </StyledCart>
   );
