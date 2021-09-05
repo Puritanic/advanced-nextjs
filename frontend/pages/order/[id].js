@@ -57,7 +57,7 @@ export default function SingleOrderPage({ query }) {
       </p>
       <p>
         <span>Order Total:</span>
-        <span>{formatMoney(order.total)}</span>
+        <span>{formatMoney(order.total / 100)}</span>
       </p>
       <p>
         <span>ItemCount:</span>
@@ -71,8 +71,8 @@ export default function SingleOrderPage({ query }) {
             <div className="item-details">
               <h2>{item.name}</h2>
               <p>Qty: {item.quantity}</p>
-              <p>Each: {formatMoney(item.price)}</p>
-              <p>Sub Total: {formatMoney(item.price * item.quantity)}</p>
+              <p>Each: {formatMoney(item.price / 100)}</p>
+              <p>Sub Total: {formatMoney((item.price / 100) * item.quantity)}</p>
               <p>{item.description}</p>
             </div>
           </div>

@@ -68,7 +68,7 @@ export default function OrdersPage() {
                     {order.items.length} Product
                     {order.items.length === 1 ? '' : 's'}
                   </p>
-                  <p>{formatMoney(order.total)}</p>
+                  <p>{formatMoney(order.total / 100)}</p>
                 </div>
                 <div className="images">
                   {order.items.map((item) => (
